@@ -74,4 +74,26 @@ public class EmployeeRepositoryTests {
         assertThat(employeeList).isNotNull();
         assertThat(employeeList.size()).isEqualTo(2);
     }
+
+    //junit test for get employee by id operation
+    @DisplayName("junit test for get employee by id operation")
+    @Test
+    public void givenEmployeeObject_whenFindById_thenReturnEmployeeObject(){
+
+       //given -precondition or setup
+        Employee employee = Employee.builder() //we can also use setter methods to save the object
+                .firstName("Ravi")
+                .lastName("Ranjan")
+                .email("ravi@gmail.com")
+                .build();
+        employeeRepository.save(employee);
+
+       //when - action or the behaviour that we are going test
+        Employee employeeDb = employeeRepository.findById(employee.getId()).get();
+
+       //then - verify the output
+        assertThat(employeeDb).isNotNull();
+
+     }
+
 }
