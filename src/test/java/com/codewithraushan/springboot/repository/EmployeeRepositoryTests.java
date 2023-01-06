@@ -20,7 +20,7 @@ public class EmployeeRepositoryTests {
     // JUnit test for save employee operation
 //    @DisplayName("JUnit test for save employee operation") //default it give it's methods name
     @Test
-    public void giveEmployeeObject_whenSave_thenReturnSavedEmployee(){
+    public void giveEmployeeObject_whenSave_thenReturnSavedEmployee() {
 
         //given - precondition or setUp
         Employee employee = Employee.builder() //we can also use setter methods to save the object
@@ -51,7 +51,7 @@ public class EmployeeRepositoryTests {
     // JUnit test for get all employees operations
     @DisplayName("JUnit test for get all employees operations")
     @Test
-    public void givenEmployeesList_whenFindAll_thenEmployeesList(){
+    public void givenEmployeesList_whenFindAll_thenEmployeesList() {
 
         //given - precondition or setUp
 
@@ -68,7 +68,7 @@ public class EmployeeRepositoryTests {
 
         employeeRepository.save(employee);
         employeeRepository.save(employee1);
-    //when - action or the behaviour that we are going test
+        //when - action or the behaviour that we are going test
         List<Employee> employeeList = employeeRepository.findAll();
 
         //then - verify the output
@@ -79,9 +79,9 @@ public class EmployeeRepositoryTests {
     //junit test for get employee by id operation
     @DisplayName("junit test for get employee by id operation")
     @Test
-    public void givenEmployeeObject_whenFindById_thenReturnEmployeeObject(){
+    public void givenEmployeeObject_whenFindById_thenReturnEmployeeObject() {
 
-       //given -precondition or setup
+        //given -precondition or setup
         Employee employee = Employee.builder() //we can also use setter methods to save the object
                 .firstName("Ravi")
                 .lastName("Ranjan")
@@ -89,69 +89,69 @@ public class EmployeeRepositoryTests {
                 .build();
         employeeRepository.save(employee);
 
-       //when - action or the behaviour that we are going test
+        //when - action or the behaviour that we are going test
         Employee employeeDb = employeeRepository.findById(employee.getId()).get();
 
-       //then - verify the output
+        //then - verify the output
         assertThat(employeeDb).isNotNull();
 
-     }
+    }
 
-     //junit test for get employee by email operations
+    //junit test for get employee by email operations
     @DisplayName("junit test for get employee by email operations")
-     @Test
-     public void givenEmployeeEmail_whenFindByEmail_thenReturnEmployeeObject(){
+    @Test
+    public void givenEmployeeEmail_whenFindByEmail_thenReturnEmployeeObject() {
 
         //given -precondition or setup
-         Employee employee = Employee.builder() //we can also use setter methods to save the object
-                 .firstName("Raushan")
-                 .lastName("Ranjan")
-                 .email("raushan@gmail.com")
-                 .build();
-         employeeRepository.save(employee);
+        Employee employee = Employee.builder() //we can also use setter methods to save the object
+                .firstName("Raushan")
+                .lastName("Ranjan")
+                .email("raushan@gmail.com")
+                .build();
+        employeeRepository.save(employee);
 
         //when - action or the behaviour that we are going test
-         Employee employeeDB = employeeRepository.findByEmail(employee.getEmail()).get();
+        Employee employeeDB = employeeRepository.findByEmail(employee.getEmail()).get();
 
         //then - verify the output
-         assertThat(employeeDB).isNotNull();
+        assertThat(employeeDB).isNotNull();
 
 
-      }
+    }
 
-      //junit test for update employee operations
+    //junit test for update employee operations
     @DisplayName("junit test for update employee operations")
-      @Test
-      public void givenEmployeeObject_whenUpdateEmployee_thenReturnUpdatedEmployeeObejct(){
+    @Test
+    public void givenEmployeeObject_whenUpdateEmployee_thenReturnUpdatedEmployeeObejct() {
 
-         //given -precondition or setup
-          Employee employee = Employee.builder() //we can also use setter methods to save the object
-                  .firstName("Raushan")
-                  .lastName("Ranjan")
-                  .email("raushan@gmail.com")
-                  .build();
-          employeeRepository.save(employee);
-
-
-          //when - action or the behaviour that we are going test
-          Employee savedEmployee = employeeRepository.findById(employee.getId()).get();
-          savedEmployee.setEmail("ravi@gmail.com");
-          savedEmployee.setFirstName("Ravi");
-          Employee updatedEmployee = employeeRepository.save(savedEmployee);
-
-         //then - verify the output
-          assertThat(updatedEmployee.getEmail()).isEqualTo("ravi@gmail.com");
-          assertThat(updatedEmployee.getFirstName()).isEqualTo("Ravi");
-
-       }
+        //given -precondition or setup
+        Employee employee = Employee.builder() //we can also use setter methods to save the object
+                .firstName("Raushan")
+                .lastName("Ranjan")
+                .email("raushan@gmail.com")
+                .build();
+        employeeRepository.save(employee);
 
 
-       //junit test for delete employee operation
+        //when - action or the behaviour that we are going test
+        Employee savedEmployee = employeeRepository.findById(employee.getId()).get();
+        savedEmployee.setEmail("ravi@gmail.com");
+        savedEmployee.setFirstName("Ravi");
+        Employee updatedEmployee = employeeRepository.save(savedEmployee);
+
+        //then - verify the output
+        assertThat(updatedEmployee.getEmail()).isEqualTo("ravi@gmail.com");
+        assertThat(updatedEmployee.getFirstName()).isEqualTo("Ravi");
+
+    }
+
+
+    //junit test for delete employee operation
     @DisplayName("junit test for delete employee operation")
-       @Test
-       public void givenEmployeeObject_whenDelete_thenRemoveEmployeeObect(){
+    @Test
+    public void givenEmployeeObject_whenDelete_thenRemoveEmployeeObect() {
 
-          //given -precondition or setup
+        //given -precondition or setup
         Employee employee = Employee.builder() //we can also use setter methods to save the object
                 .firstName("Raushan")
                 .lastName("Ranjan")
@@ -166,33 +166,51 @@ public class EmployeeRepositoryTests {
 
         Optional<Employee> optionalEmployee = employeeRepository.findById(employee.getId());
 
-          //then - verify the output
+        //then - verify the output
         assertThat(optionalEmployee).isEmpty();
 
-        }
+    }
 
-        //junit test for custom Query using JPQl index
+    //junit test for custom Query using JPQl index
     @DisplayName("junit test for custom Query using JPQl index")
-        @Test
-        public void givenFirstNameAndLastName_whenFindByJPQL_thenReturnEmployeeObject(){
+    @Test
+    public void givenFirstNameAndLastName_whenFindByJPQL_thenReturnEmployeeObject() {
 
-           //given -precondition or setup
-            Employee employee = Employee.builder() //we can also use setter methods to save the object
-                    .firstName("Raushan")
-                    .lastName("Ranjan")
-                    .email("raushan@gmail.com")
-                    .build();
-            employeeRepository.save(employee);
-            String firstName = "Raushan";
-            String lastName = "Ranjan";
+        //given -precondition or setup
+        Employee employee = Employee.builder() //we can also use setter methods to save the object
+                .firstName("Raushan")
+                .lastName("Ranjan")
+                .email("raushan@gmail.com")
+                .build();
+        employeeRepository.save(employee);
+        String firstName = "Raushan";
+        String lastName = "Ranjan";
 
-           //when - action or the behaviour that we are going test
-            Employee savedEmployee = employeeRepository.findByJPQL(firstName,lastName);
+        //when - action or the behaviour that we are going test
+        Employee savedEmployee = employeeRepository.findByJPQL(firstName, lastName);
 
-           //then - verify the output
-            assertThat(savedEmployee).isNotNull();
+        //then - verify the output
+        assertThat(savedEmployee).isNotNull();
 
-         }
+    }
 
+    //junit test for custom Query using JPQl with Named params
+    @DisplayName("junit test for custom Query using JPQl with Named params")
+    @Test
+    public void givenFirstNameAndLastName_whenFindByJPQLNamedParams_thenReturnEmployeeObject() {
+        //given -precondition or setup
+        Employee employee = Employee.builder() //we can also use setter methods to save the object
+                .firstName("Raushan")
+                .lastName("Ranjan")
+                .email("raushan@gmail.com")
+                .build();
+        employeeRepository.save(employee);
+        String firstName = "Raushan";
+        String lastName = "Ranjan";
 
+        //when - action or the behaviour that we are going test
+        Employee savedEmployee = employeeRepository.findByJPQLNamedParams(firstName, lastName);
+        //then - verify the output
+        assertThat(savedEmployee).isNotNull();
+    }
 }
