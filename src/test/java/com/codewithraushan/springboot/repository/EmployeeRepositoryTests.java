@@ -2,6 +2,8 @@ package com.codewithraushan.springboot.repository;
 
 import com.codewithraushan.springboot.model.Employee;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,17 @@ public class EmployeeRepositoryTests {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    private Employee employee;
+
+    @BeforeEach
+    public void setup(){
+         employee = Employee.builder()
+                .firstName("Raushan")
+                .lastName("Ranjan")
+                .email("raushan@gmail.com")
+                .build();
+    }
+
 
     // JUnit test for save employee operation
 //    @DisplayName("JUnit test for save employee operation") //default it give it's methods name
@@ -23,11 +36,11 @@ public class EmployeeRepositoryTests {
     public void giveEmployeeObject_whenSave_thenReturnSavedEmployee() {
 
         //given - precondition or setUp
-        Employee employee = Employee.builder() //we can also use setter methods to save the object
-                .firstName("Raushan")
-                .lastName("kumar")
-                .email("raushan@gmail.com")
-                .build();
+//        Employee employee = Employee.builder() //we can also use setter methods to save the object
+//                .firstName("Raushan")
+//                .lastName("Ranjan")
+//                .email("raushan@gmail.com")
+//                .build();
 
         //when - action or the behaviour that we are going test
         Employee savedEmployee = employeeRepository.save(employee);
@@ -55,11 +68,11 @@ public class EmployeeRepositoryTests {
 
         //given - precondition or setUp
 
-        Employee employee = Employee.builder() //we can also use setter methods to save the object
-                .firstName("Ravi")
-                .lastName("Ranjan")
-                .email("ravi@gmail.com")
-                .build();
+//        Employee employee = Employee.builder() //we can also use setter methods to save the object
+//                .firstName("Raushan")
+//                .lastName("Ranjan")
+//                .email("raushan@gmail.com")
+//                .build();
         Employee employee1 = Employee.builder() //we can also use setter methods to save the object
                 .firstName("Rahul")
                 .lastName("kumar")
@@ -82,11 +95,11 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeObject_whenFindById_thenReturnEmployeeObject() {
 
         //given -precondition or setup
-        Employee employee = Employee.builder() //we can also use setter methods to save the object
-                .firstName("Ravi")
-                .lastName("Ranjan")
-                .email("ravi@gmail.com")
-                .build();
+//        Employee employee = Employee.builder() //we can also use setter methods to save the object
+//                .firstName("Raushan")
+//                .lastName("Ranjan")
+//                .email("ravi@gmail.com")
+//                .build();
         employeeRepository.save(employee);
 
         //when - action or the behaviour that we are going test
@@ -103,11 +116,11 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeEmail_whenFindByEmail_thenReturnEmployeeObject() {
 
         //given -precondition or setup
-        Employee employee = Employee.builder() //we can also use setter methods to save the object
-                .firstName("Raushan")
-                .lastName("Ranjan")
-                .email("raushan@gmail.com")
-                .build();
+//        Employee employee = Employee.builder() //we can also use setter methods to save the object
+//                .firstName("Raushan")
+//                .lastName("Ranjan")
+//                .email("raushan@gmail.com")
+//                .build();
         employeeRepository.save(employee);
 
         //when - action or the behaviour that we are going test
@@ -125,11 +138,11 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeObject_whenUpdateEmployee_thenReturnUpdatedEmployeeObejct() {
 
         //given -precondition or setup
-        Employee employee = Employee.builder() //we can also use setter methods to save the object
-                .firstName("Raushan")
-                .lastName("Ranjan")
-                .email("raushan@gmail.com")
-                .build();
+//        Employee employee = Employee.builder() //we can also use setter methods to save the object
+//                .firstName("Raushan")
+//                .lastName("Ranjan")
+//                .email("raushan@gmail.com")
+//                .build();
         employeeRepository.save(employee);
 
 
@@ -152,11 +165,11 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeObject_whenDelete_thenRemoveEmployeeObect() {
 
         //given -precondition or setup
-        Employee employee = Employee.builder() //we can also use setter methods to save the object
-                .firstName("Raushan")
-                .lastName("Ranjan")
-                .email("raushan@gmail.com")
-                .build();
+//        Employee employee = Employee.builder() //we can also use setter methods to save the object
+//                .firstName("Raushan")
+//                .lastName("Ranjan")
+//                .email("raushan@gmail.com")
+//                .build();
         employeeRepository.save(employee);
 
 
@@ -177,11 +190,11 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameAndLastName_whenFindByJPQL_thenReturnEmployeeObject() {
 
         //given -precondition or setup
-        Employee employee = Employee.builder() //we can also use setter methods to save the object
-                .firstName("Raushan")
-                .lastName("Ranjan")
-                .email("raushan@gmail.com")
-                .build();
+//        Employee employee = Employee.builder() //we can also use setter methods to save the object
+//                .firstName("Raushan")
+//                .lastName("Ranjan")
+//                .email("raushan@gmail.com")
+//                .build();
         employeeRepository.save(employee);
         String firstName = "Raushan";
         String lastName = "Ranjan";
@@ -199,11 +212,11 @@ public class EmployeeRepositoryTests {
     @Test
     public void givenFirstNameAndLastName_whenFindByJPQLNamedParams_thenReturnEmployeeObject() {
         //given -precondition or setup
-        Employee employee = Employee.builder() //we can also use setter methods to save the object
-                .firstName("Raushan")
-                .lastName("Ranjan")
-                .email("raushan@gmail.com")
-                .build();
+//        Employee employee = Employee.builder() //we can also use setter methods to save the object
+//                .firstName("Raushan")
+//                .lastName("Ranjan")
+//                .email("raushan@gmail.com")
+//                .build();
         employeeRepository.save(employee);
         String firstName = "Raushan";
         String lastName = "Ranjan";
@@ -219,11 +232,11 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameAndLastName_whenFindByNativeSQL_thenRetuenEmployeeObject(){
 
        //given -precondition or setup
-        Employee employee = Employee.builder() //we can also use setter methods to save the object
-                .firstName("Raushan")
-                .lastName("Ranjan")
-                .email("raushan@gmail.com")
-                .build();
+//        Employee employee = Employee.builder() //we can also use setter methods to save the object
+//                .firstName("Raushan")
+//                .lastName("Ranjan")
+//                .email("raushan@gmail.com")
+//                .build();
         employeeRepository.save(employee);
 //        String firstName = "Raushan";
 //        String lastName = "Ranjan";
@@ -242,11 +255,11 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameAndLastName_whenFindByNativeSQLNamedParams_thenRetuenEmployeeObject(){
 
         //given -precondition or setup
-        Employee employee = Employee.builder()
-                .firstName("Raushan")
-                .lastName("Ranjan")
-                .email("raushan@gmail.com")
-                .build();
+//        Employee employee = Employee.builder()
+//                .firstName("Raushan")
+//                .lastName("Ranjan")
+//                .email("raushan@gmail.com")
+//                .build();
         employeeRepository.save(employee);
 
 
