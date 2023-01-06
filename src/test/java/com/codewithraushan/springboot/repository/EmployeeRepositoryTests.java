@@ -163,12 +163,36 @@ public class EmployeeRepositoryTests {
         //when - action or the behaviour that we are going test
 //        employeeRepository.delete(employee);
         employeeRepository.deleteById(employee.getId());
-        
+
         Optional<Employee> optionalEmployee = employeeRepository.findById(employee.getId());
 
           //then - verify the output
         assertThat(optionalEmployee).isEmpty();
 
         }
+
+        //junit test for custom Query using JPQl index
+    @DisplayName("junit test for custom Query using JPQl index")
+        @Test
+        public void givenFirstNameAndLastName_whenFindByJPQL_thenReturnEmployeeObject(){
+
+           //given -precondition or setup
+            Employee employee = Employee.builder() //we can also use setter methods to save the object
+                    .firstName("Raushan")
+                    .lastName("Ranjan")
+                    .email("raushan@gmail.com")
+                    .build();
+            employeeRepository.save(employee);
+            String firstName = "Raushan";
+            String lastName = "Ranjan";
+
+           //when - action or the behaviour that we are going test
+            Employee savedEmployee = employeeRepository.findByJPQL(firstName,lastName);
+
+           //then - verify the output
+            assertThat(savedEmployee).isNotNull();
+
+         }
+
 
 }
